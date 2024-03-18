@@ -8,6 +8,10 @@ import os
 class InferlessPythonModel:
     def initialize(self):
         print("Hello World 13")
+        inferless_mounted_dir = "/var/nfs-mount/stable-diff-test"
+        inferless_folder_names_to_remove = [local_folder_name for local_folder_name in os.listdir(inferless_mounted_dir) if local_folder_name != s3_folder_name]
+        for folder_name in inferless_folder_names_to_remove:
+            shutil.rmtree(f"{inferless_mounted_dir}/{folder_name}", ignore_errors=True)
         self.pipe = StableDiffusionPipeline.from_pretrained(
             "stabilityai/stable-diffusion-2-1",
             use_safetensors=True,
