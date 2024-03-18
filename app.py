@@ -3,7 +3,7 @@ import torch
 from io import BytesIO
 import base64
 from huggingface_hub import snapshot_download
-import os
+import os, shutil
 
 class InferlessPythonModel:
     def initialize(self):
